@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Neo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="browser.js"></script> 
+  <script src="operations.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">Wandx</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="#">Home</a></li>
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">AdminOperations<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="admin.html">Admin</a></li>
+                          <!--<li><a href="#">Page 1-2</a></li>
+                          <li><a href="#">Page 1-3</a></li>-->
+                        </ul>
+                      </li>
+                     
+                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Operations<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="operation.html">operation</a></li>
+                          <li><a href="getorders.html">Getorders</a></li>
+                          <li><a href="operation1.html">Basket_Orders</a></li>
+                        </ul>
+                      </li>
+                      
+                    </ul>
+                   
+                  </div>
+                </div>
+              </nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <form>        
+                <h1>Initialize</h1>         
+                    <div class="form-group row">
+                        <label for="SellerFee" class="col-sm-2 col-form-label">SellerFee</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="sellerfee" name="sellerfee">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="BuyerFee" class="col-sm-2 col-form-label">BuyerFee</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="buyerFee" name="buyerFee">
+                            </div>
+                </div>
+                <div class="form-group row">
+                        <label for="FeeAddr" class="col-sm-2 col-form-label">FeeAddress</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="feeaddr" name="feeaddr">
+                            </div>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" onclick="initialize()" value="Initialize">
+                </div>           
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <form>
+            <h3>GetSellerFee</h3>
+                    <div class="form-group">
+                   
+                        <input type="button" class="btn btn-primary" onclick="getSellerFee()" value="GetSellerFee">
+                        <br><p>Get Seller Fee is:<b id="getsellfee"></b></p> 
+                    </div> 
+
+            <h3>GetBuyerFee</h3>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" onclick="getBuyerFee()" value="GetBuyerFee">
+                        <br><p>Get Buyer Fee is:<b id="getbuyfee"></b></p> 
+                    </div> 
+                    
+            <h3>SetSellerFee</h3>         
+                    <div class="form-group row">
+                        <label for="SellerFee" class="col-sm-2 col-form-label">SetSellerFee</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="setsellerfee" name="setsellerfee">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <input type="button" class="btn btn-primary" onclick="setSellerFee()" value="SetSellerFee">
+                    </div> 
+            <h3>SetBuyerFee</h3>         
+                    <div class="form-group row">
+                        <label for="SellerFee" class="col-sm-2 col-form-label">SetBuyerFee</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="setbuyerFee" name="setbuyerfee">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                               <input type="button" class="btn btn-primary" onclick="setBuyerFee()" value="SetBuyerFee">
+                    </div>         
+            </form>
+        </div>
+    
+    </div>
+</div>
+<!-- Default form contact -->
+  
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Neo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="browser.js"></script>
+  <script src="operations.js"></script>
+  <style>   
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Wandx</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">AdminOperations<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="admin.html">Admin</a></li>
+                  <!--<li><a href="#">Page 1-2</a></li>
+                  <li><a href="#">Page 1-3</a></li>-->
+                </ul>
+              </li>
+              <!--<li><a href="admin.html">Admin</a></li>-->
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Operations<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="operation.html">operation</a></li>
+                  <li><a href="getorders.html">Get_Orders</a></li>
+                  <li><a href="operation1.html">Basket_Orders</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>-->
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm-6">
+                  <form>        
+                      <h2>Deposit</h2>         
+                          <div class="form-group row">
+                              <label for="originator" class="col-sm-2 col-form-label">originator</label>
+                                  <div class="col-sm-4">
+                                      <input type="text"  class="form-control" id="originator" name="originator">
+                                  </div>
+                          </div>
+                          <div class="form-group row">
+                              <label for="assetid" class="col-sm-2 col-form-label">AssetId</label>
+                                  <div class="col-sm-4">
+                                      <input type="text"  class="form-control" id="assetid" name="assetid">
+                                  </div>
+                      </div>
+                      <div class="form-group row">
+                              <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+                                  <div class="col-sm-4">
+                                      <input type="text"  class="form-control" id="amount" name="amount">
+                                  </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="button" class="btn btn-primary" onclick="deposit ()" value="Initialize">
+                      </div> 
+                      <h2>GetBalance</h2>         
+                          <div class="form-group row">
+                              <label for="originator" class="col-sm-2 col-form-label">originator</label>
+                                  <div class="col-sm-4">
+                                      <input type="text"  class="form-control" id="getbal_originator" name="getbal_originator">
+                                  </div>
+                          </div>
+                          <div class="form-group row">
+                              <label for="assetid" class="col-sm-2 col-form-label">AssetId</label>
+                                  <div class="col-sm-4">
+                                      <input type="text"  class="form-control" id="getbal_assetid" name="getbal_assetid">
+                                  </div>
+                      </div>
+                     
+                      <div class="form-group">
+                          <input type="button" class="btn btn-primary" onclick="getBalance()" value="GetBalance">
+                      </div>  
+                      <br><p>Get Balance Fee is:<b id="depositBalance"></b></p> 
+                      <h2>CalculateHash</h2>
+                      <div class="form-group row">
+                        <label for="selleraddrress" class="col-sm-2 col-form-label">Seller Address</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="oh_selleraddr" name="oh_selleraddr">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="offerassetid" class="col-sm-2 col-form-label">offerAssetId</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="oh_off_assetid" name="oh_off_assetid">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="offeramount" class="col-sm-2 col-form-label">offerAmount</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="oh_off_amount" name="oh_off_amount">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="wantassetid" class="col-sm-2 col-form-label">WantAssetId</label>
+                          <div class="col-sm-4">
+                              <input type="text"  class="form-control" id="oh_want_assetid" name="oh_want_assetid">
+                          </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="wantamount" class="col-sm-2 col-form-label">WantAmount</label>
+                          <div class="col-sm-4">
+                              <input type="text"  class="form-control" id="oh_want_amount" name="oh_want_amount">
+                          </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="nonce" class="col-sm-2 col-form-label">Nonce</label>
+                        <div class="col-sm-4">
+                            <input type="text"  class="form-control" id="oh_nonce" name="oh_nonce">
+                        </div>
+                </div>       
+                      <div class="form-group">
+                          <input type="button" class="btn btn-primary" onclick="calculateHash1()" value="calculateHash">
+                      </div>  
+                      <br><p>Get Hash is:<b id="od_hash"></b></p>                       
+                  </form>
+              </div>
+              <div class="col-sm-6">
+                 <form>        
+                  <h3>Single Sell order</h3>        
+                      <div class="form-group row">
+                          <label for="selleraddrress" class="col-sm-2 col-form-label">Seller Address</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="selleraddr" name="selleraddr">
+                              </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="offerassetid" class="col-sm-2 col-form-label">offerAssetId</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="off_assetid" name="off_assetid">
+                              </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="offeramount" class="col-sm-2 col-form-label">offerAmount</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="off_amount" name="off_amount">
+                              </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="wantassetid" class="col-sm-2 col-form-label">WantAssetId</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="want_assetid" name="want_assetid">
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="wantamount" class="col-sm-2 col-form-label">WantAmount</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="want_amount" name="want_amount">
+                            </div>
+                    </div>
+                 
+                    <div class="form-group">
+                      <input type="button" class="btn btn-primary" onclick="singleSellOrder()" value="SingleSellOrder">
+                  </div> 
+                  <!--<br><p>Get Balance Fee is:<b id="depositBalance"></b></p>-->  
+                  <h3>FulfillSingleOffer</h3>        
+                      <div class="form-group row">
+                          <label for="Filleraddrress" class="col-sm-2 col-form-label">Filler Address</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="filleraddr" name="filleraddr">
+                              </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="offerassetid" class="col-sm-2 col-form-label">offerAssetId</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="fulloff_assetid" name="fulloff_assetid">
+                              </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="wantassetid" class="col-sm-2 col-form-label">WantAssetId</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="fullwant_assetid" name="fullwant_assetid">
+                            </div>
+                    </div>
+                      <div class="form-group row">
+                          <label for="orderhash" class="col-sm-2 col-form-label">OrderHash</label>
+                              <div class="col-sm-4">
+                                  <input type="text"  class="form-control" id="orderhash" name="orderhash">
+                              </div>
+                      </div>
+                      
+                    <div class="form-group row">
+                        <label for="buyamount" class="col-sm-2 col-form-label">BuyForAmount</label>
+                            <div class="col-sm-4">
+                                <input type="text"  class="form-control" id="buy_amount" name="buy_amount">
+                            </div>
+                    </div>
+                 
+                    <div class="form-group">
+                      <input type="button" class="btn btn-primary" onclick="ffso()" value="FulfillSingleOffer">
+                  </div>                  
+              </form>
+              </div>
+          
+          </div>
+      </div>
+      
+
+  
+
+
+
+</body>
+</html>
